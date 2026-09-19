@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+  <head>
+     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>UniCORE - Uniso Academic Digital Ecosystem</title>
+    <meta name="description" content="UniCORE is an academic digital ecosystem — AI-powered platform for students and universities." />
+
+    <!-- Open Graph (social sharing) -->
+    <meta property="og:title" content="UniCORE - Academic Digital Ecosystem" />
+    <meta property="og:description" content="AI-powered academic platform for students and universities." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://unicores.site" />
+    <meta property="og:image" content="https://unicores.site/og-image.png" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="UniCORE - Academic Digital Ecosystem" />
+    <meta name="twitter:description" content="AI-powered academic platform for students and universities." />
+    <meta name="twitter:image" content="https://unicores.site/og-image.png" />
+
+    <link rel="canonical" href="https://unicores.site" />
+    <link rel="icon" type="image/svg+xml" href="./src/assets/images.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
+    <script>
+      (function () {
+        try {
+          var storedTheme = localStorage.getItem("uniso-theme");
+          var prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+          var theme = storedTheme === "dark" || storedTheme === "light"
+            ? storedTheme
+            : prefersDark ? "dark" : "light";
+          document.documentElement.classList.toggle("dark", theme === "dark");
+          document.documentElement.style.colorScheme = theme;
+        } catch (_) {}
+      })();
+    </script>
+<title>UNICORE – Uniso Academic Digital Ecosystem</title>
+
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

@@ -1,0 +1,84 @@
+/* Clean, Professional Design Lab Theme */
+.design-lab-root {
+  color-scheme: light dark;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Neutralize the exam button class inside Design Lab */
+.design-lab-root [class*="bg-[#2C2DE0]"] {
+  background-color: #f1f5f9 !important;
+  color: #334155 !important;
+  box-shadow: none !important;
+  border: 1px solid #cbd5e1 !important;
+  transform: none !important;
+  transition: all 0.15s ease !important;
+}
+
+.dark .design-lab-root [class*="bg-[#2C2DE0]"] {
+  background-color: #1e293b !important;
+  color: #e2e8f0 !important;
+  border-color: #334155 !important;
+}
+
+.design-lab-root [class*="bg-[#2C2DE0]"]:hover {
+  background-color: #e2e8f0 !important;
+  color: #0f172a !important;
+  border-color: #94a3b8 !important;
+}
+
+.dark .design-lab-root [class*="bg-[#2C2DE0]"]:hover {
+  background-color: #334155 !important;
+  color: #ffffff !important;
+  border-color: #475569 !important;
+}
+
+.design-lab-root [class*="bg-[#2C2DE0]"]:active {
+  background-color: #cbd5e1 !important;
+}
+
+.dark .design-lab-root [class*="bg-[#2C2DE0]"]:active {
+  background-color: #475569 !important;
+}
+
+.design-lab-root button[class*="bg-[#2C2DE0]"] {
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+.design-lab-root button[class*="bg-[#2C2DE0]"] > * {
+  color: inherit !important;
+}
+
+/* Specific styling for primary action buttons like Save & Export */
+.design-lab-root button[title="Export as PNG"],
+.design-lab-root button[title="Save"],
+.design-lab-root button:has(svg.lucide-save) {
+  background-color: #2563eb !important;
+  color: #ffffff !important;
+  border-color: #1d4ed8 !important;
+}
+
+.design-lab-root button[title="Export as PNG"]:hover,
+.design-lab-root button[title="Save"]:hover {
+  background-color: #1d4ed8 !important;
+}
+
+/* Custom scrollbars inside Design Lab */
+.design-lab-root ::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.design-lab-root ::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.design-lab-root ::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 3px;
+}
+
+.dark .design-lab-root ::-webkit-scrollbar-thumb {
+  background: #334155;
+}
+

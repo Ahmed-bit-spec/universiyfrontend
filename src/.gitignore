@@ -1,0 +1,11 @@
+.env
+.env.*
+node_modules
+dist
+.env
+.env.*
+!.env.example
+
+# Firebase / Google Cloud credentials
+*-firebase-adminsdk-*.json
+service-account*.json
