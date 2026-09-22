@@ -71,7 +71,7 @@ const About = () => {
        <Helmet>
         <title>About UniCORE - Academic Digital Ecosystem</title>
         <meta name="description" content="Learn about UniCORE's mission to unify university digital tools." />
-        <link rel="canonical" href="https://unicores.site/about" />
+        <link rel="canonical" href="https://www.unicores.tech/about" />
       </Helmet>
       {/* ── Hero ─────────────────────────────────────────────────── */}
       <section className="w-full bg-white dark:bg-black/90 relative overflow-hidden">

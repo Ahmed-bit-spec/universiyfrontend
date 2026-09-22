@@ -14,7 +14,8 @@ import {
 const resolvePhoto = (photo) => {
   if (!photo) return null;
   if (photo.startsWith("blob:") || photo.startsWith("http")) return photo;
-  return `${import.meta.env.VITE_API_BASE_URL ?? "https://api.unicores.site/api/v1"}/${photo}`;
+  const base = (import.meta.env.VITE_API_BASE_URL ?? import.meta.env.VITE_API_URL ?? "").replace(/\/+$/, "");
+  return base ? `${base}/${photo.replace(/^\/+/, "")}` : `/${photo.replace(/^\/+/, "")}`;
 };
 
 const getInitials = (name = "") =>

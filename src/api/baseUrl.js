@@ -1,4 +1,4 @@
-const DEFAULT_BACKEND_URL = "https://api.unicores.site/api/v1";
+const DEFAULT_BACKEND_URL = "/api/v1";
 
 export const resolveApiBaseUrl = (provided = "", host = "") => {
   const raw = String(provided ?? "").trim();
@@ -21,11 +21,7 @@ export const resolveApiBaseUrl = (provided = "", host = "") => {
     return `/${cleaned}`;
   }
 
-  const isLocalHost =
-    typeof window !== "undefined" &&
-    /localhost|127\.0\.0\.1/i.test(host || window.location.hostname);
-
-  return isLocalHost ? "/api/v1" : `${DEFAULT_BACKEND_URL}/api/v1`;
+  return DEFAULT_BACKEND_URL;
 };
 
 export const buildGoogleAuthUrl = (provided = "", host = "") => {

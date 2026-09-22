@@ -16,7 +16,8 @@ const VerifyEmailStep = ({ savedEmail, onBack }) => {
   const { t } = useLanguage();
   const navigate = useNavigate();
 
-  // ─── Step: "verify" | "verifying" | "sending" | "success"
+  // ─── Step: "verif
+  // " | "verifying" | "sending" | "success"
   const [step, setStep] = useState("verify");
   const [loadingPhase, setLoadingPhase] = useState(0);
   const [verifyCode, setVerifyCode] = useState("");

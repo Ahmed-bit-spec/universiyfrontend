@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://unicores.site/sitemap.xml
+Sitemap: https://www.unicores.tech/sitemap.xml

@@ -36,7 +36,7 @@ const LandingPage = () => {
     content="UniCORE, university management system, LMS, student portal, AI education"
   />
 
-  <link rel="canonical" href="https://unicores.site/" />
+  <link rel="canonical" href="https://www.unicores.tech/" />
 </Helmet>
       <Hero       t={t} />
       <Features   t={t} />

@@ -92,11 +92,7 @@ import ContactUs from './community/contactUs';
 import UserProfile from './community/userspagesss';
 import { HelmetProvider } from "react-helmet-async";
 
-// Axios Configuration
-axios.defaults.withCredentials = true;
-// When using a proxy in vite.config.js, baseURL should be empty or '/'
-axios.defaults.baseURL = "";
-window.API_BASE_URL = axios.defaults.baseURL;
+
 
 const queryClient = new QueryClient();
 

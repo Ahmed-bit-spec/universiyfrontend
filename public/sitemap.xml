@@ -1,32 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://unicores.site/</loc>
+    <loc>https://www.unicores.tech/</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://unicores.site/about</loc>
+    <loc>https://www.unicores.tech/about</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://unicores.site/login</loc>
+    <loc>https://www.unicores.tech/login</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://unicores.site/signup</loc>
+    <loc>https://www.unicores.tech/signup</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://unicores.site/pricing</loc>
+    <loc>https://www.unicores.tech/pricing</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://unicores.site/contact</loc>
+    <loc>https://www.unicores.tech/contact</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
