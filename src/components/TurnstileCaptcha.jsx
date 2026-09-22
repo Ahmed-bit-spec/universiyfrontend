@@ -9,14 +9,15 @@ export default function TurnstileCaptcha({ onVerify, onError, onExpire, classNam
   }
 
   return (
-    <div className={`my-3 flex justify-center ${className}`}>
+    <div className={`my-3 w-full ${className}`}>
       <Turnstile
         siteKey={siteKey}
         onSuccess={(token) => onVerify && onVerify(token)}
         onError={(err) => onError && onError(err)}
         onExpire={() => onExpire && onExpire()}
         options={{
-          theme: "auto",
+          theme: "light",
+          size: "flexible",
         }}
       />
     </div>
