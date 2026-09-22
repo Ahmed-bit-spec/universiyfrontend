@@ -1,20 +1,27 @@
 import { io } from "socket.io-client";
 
-// Prefer an explicit socket URL via env. Fallback to the backend origin
-// derived from the API base URL (set on window.API_BASE_URL by api/client).
-const SOCKET_URL = import.meta.env.VITE_SOCKET_URL ?? (typeof window !== 'undefined' && window.API_BASE_URL ? (() => {
-  try {
-    return new URL(window.API_BASE_URL).origin;
-  } catch (e) {
-    return undefined;
+const resolveSocketUrl = () => {
+  if (import.meta.env.VITE_SOCKET_URL) return import.meta.env.VITE_SOCKET_URL;
+  if (import.meta.env.VITE_API_SERVER_URL) return import.meta.env.VITE_API_SERVER_URL;
+
+  const rawApiUrl = import.meta.env.VITE_API_BASE_URL || import.meta.env.VITE_API_URL || (typeof window !== "undefined" ? window.API_BASE_URL : "");
+  if (rawApiUrl && /^https?:\/\//i.test(rawApiUrl)) {
+    try {
+      return new URL(rawApiUrl).origin;
+    } catch {
+      // ignore
+    }
   }
-})() : undefined);
+  return undefined;
+};
+
+const SOCKET_URL = resolveSocketUrl();
 
 const socketOptions = {
   path:            "/socket.io",
   withCredentials: true,
   transports:      ["websocket", "polling"],
-  autoConnect:     true,
+  autoConnect:     Boolean(SOCKET_URL),
 };
 
 const socket = SOCKET_URL ? io(SOCKET_URL, socketOptions) : io(socketOptions);

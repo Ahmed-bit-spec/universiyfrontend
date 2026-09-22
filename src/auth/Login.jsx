@@ -263,10 +263,12 @@ const LoginPage = () => {
                     {t("auth.forgotPassword")}
                   </Link>
                 </div>
-                <ReCAPTCHA
-                  sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY}
-                  onChange={(token) => setCaptchaToken(token)}
-                />
+                {import.meta.env.VITE_RECAPTCHA_SITE_KEY && (
+                  <ReCAPTCHA
+                    sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY}
+                    onChange={(token) => setCaptchaToken(token)}
+                  />
+                )}
 
 
 
