@@ -8,7 +8,7 @@ import UnicoreLogo from "@/FrontDoorSystem/components/Logo";
 import api from "@/api/client";
 import { buildGoogleAuthUrl } from "@/api/baseUrl";
 import GoogleOneTap from "@/components/GoogleOneTap";
-import ReCAPTCHA from "react-google-recaptcha";
+import TurnstileCaptcha from "@/components/TurnstileCaptcha";
 
 // ─── Duolingo-style Google button ────────────────────────────────────────────
 
@@ -87,7 +87,7 @@ const LoginPage = () => {
     try {
       const response = await api.post(
         "/auth/login",
-        { ...formData, captchaToken },
+        { ...formData, turnstileToken: captchaToken, captchaToken },
         { withCredentials: true }
       );
 
@@ -119,8 +119,8 @@ const LoginPage = () => {
       return;
     }
 
-    if (!captchaToken) {
-      toast.error("Please complete the reCAPTCHA verification.");
+    if (import.meta.env.VITE_TURNSTILE_SITE_KEY && !captchaToken) {
+      toast.error("Please complete the human verification.");
       return;
     }
 
@@ -263,12 +263,10 @@ const LoginPage = () => {
                     {t("auth.forgotPassword")}
                   </Link>
                 </div>
-                {import.meta.env.VITE_RECAPTCHA_SITE_KEY && (
-                  <ReCAPTCHA
-                    sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY}
-                    onChange={(token) => setCaptchaToken(token)}
-                  />
-                )}
+                <TurnstileCaptcha
+                  onVerify={(token) => setCaptchaToken(token)}
+                  onExpire={() => setCaptchaToken(null)}
+                />
 
 
 

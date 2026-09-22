@@ -9,6 +9,7 @@ import { toast } from "sonner";
 import { useLanguage } from "@/hooks/useLanguage";
 import UnicoreLogo from "@/FrontDoorSystem/components/Logo";
 import api from "@/api/client";
+import TurnstileCaptcha from "@/components/TurnstileCaptcha";
 
 const PW_CHECKS = [
   { id: "len", test: (p) => p.length >= 8 },
@@ -142,6 +143,7 @@ const ForgotPassword = () => {
 
   const [emailError, setEmailError] = useState("");
   const [resetError, setResetError] = useState("");
+  const [turnstileToken, setTurnstileToken] = useState(null);
 
   // Rotate loading text
   useEffect(() => {
@@ -158,13 +160,18 @@ const ForgotPassword = () => {
   const handleSendCode = async (e) => {
     e.preventDefault();
     if (!email) { setEmailError(t("auth.fillAllFields")); return; }
-  
+
+    if (import.meta.env.VITE_TURNSTILE_SITE_KEY && !turnstileToken) {
+      setEmailError("Please complete the human verification.");
+      return;
+    }
+
     setEmailError("");
     setStep("sending");
     setLoadingPhase(0);
 
     try {
-      await api.post("/auth/forgot-password", { email }, { withCredentials: true });
+      await api.post("/auth/forgot-password", { email, turnstileToken }, { withCredentials: true });
       // Transition directly to verify — no extra animating state needed
       setStep("verify");
     } catch (err) {
@@ -322,8 +329,12 @@ const ForgotPassword = () => {
                   />
                 </div>
 
-                
-<button
+                <TurnstileCaptcha
+                  onVerify={(token) => setTurnstileToken(token)}
+                  onExpire={() => setTurnstileToken(null)}
+                />
+
+                <button
   type="submit"
   className="w-full flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-[#2C2DE0] text-white text-sm font-bold shadow-[0_4px_0_#1E1FAA] hover:translate-y-0.5 hover:shadow-[0_2px_0_#1E1FAA] active:translate-y-1 active:shadow-none transition-all duration-150 group"
 >

@@ -11,7 +11,7 @@ import api from "@/api/client";
 import { buildGoogleAuthUrl } from "@/api/baseUrl";
 import GoogleOneTap from "@/components/GoogleOneTap";
 import { Helmet } from "react-helmet-async";
-import ReCAPTCHA from "react-google-recaptcha";
+import TurnstileCaptcha from "@/components/TurnstileCaptcha";
 import { toast } from "sonner";
 
 // ─── Duolingo-style Google button ────────────────────────────────────────────
@@ -196,19 +196,22 @@ const SignupPage = () => {
 
   const submitRegister = async () => {
     setRegisterError("");
-    setStep("sending");
-    setLoadingPhase(0);
-    if (!captchaToken) {
-      toast.error("Please complete the reCAPTCHA verification.");
+
+    if (import.meta.env.VITE_TURNSTILE_SITE_KEY && !captchaToken) {
+      toast.error("Please complete the human verification.");
       return;
     }
 
+    setStep("sending");
+    setLoadingPhase(0);
+
     try {
-      await new Promise((r) => setTimeout(r, 2200));
       await api.post(
         "/auth/register",
         {
-          ...registerData, captchaToken
+          ...registerData,
+          turnstileToken: captchaToken,
+          captchaToken,
         },
         { withCredentials: true }
       );
@@ -428,12 +431,10 @@ const SignupPage = () => {
                   <PasswordStrengthMeter password={registerData.password} t={t} />
                 </div>
 
-                {import.meta.env.VITE_RECAPTCHA_SITE_KEY && (
-                  <ReCAPTCHA
-                    sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY}
-                    onChange={(token) => setCaptchaToken(token)}
-                  />
-                )}
+                <TurnstileCaptcha
+                  onVerify={(token) => setCaptchaToken(token)}
+                  onExpire={() => setCaptchaToken(null)}
+                />
 
                 <button
                   type="submit"
